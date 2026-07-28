@@ -52,8 +52,9 @@ export default function PatientDashboard({ UserDni }: { UserDni: string }) {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    } catch (error: any) {
-      alert('No se pudo generar el enlace de descarga: ' + error.message);
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : 'Error desconocido';
+      alert('No se pudo generar el enlace de descarga: ' + msg);
     }
   };
 

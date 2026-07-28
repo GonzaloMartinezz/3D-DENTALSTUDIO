@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -7,7 +8,17 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --color-brand-beige: #E6D5BE;
+  --color-brand-brown: #6B4F3A;
+  --color-brand-blue: #C9DCE8;
+  --color-brand-mint-light: #eefcf0;
+  --color-brand-mint-base: #d1f7d6;
+  --color-brand-mint-dark: #a3e6ab;
+  --color-brand-blue-light: #e6f0fa;
+  --color-brand-blue-base: #cce0f5;
+  --color-brand-blue-dark: #3a5b7c;
+  --color-brand-dark: #2a332c;
+  --font-sans: "Lilita One", sans-serif;
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -122,9 +133,131 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-brand-dark;
   }
   html {
     @apply font-sans;
   }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Wave Fill Hover Effect */
+.wave-fill {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.5s;
+}
+
+.wave-fill::before {
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  width: 250%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 40%;
+  background: var(--color-brand-brown);
+  z-index: -1;
+  transition: top 0.8s ease-in-out;
+  animation: wave-spin 6s linear infinite;
+}
+
+.wave-fill:hover::before {
+  top: -30%;
+}
+
+@keyframes wave-spin {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+.wave-fill-text-hover:hover {
+  color: var(--color-brand-beige) !important;
+}
+.wave-fill-text-hover:hover p,
+.wave-fill-text-hover:hover h3,
+.wave-fill-text-hover:hover span {
+  color: var(--color-brand-beige) !important;
+}
+.wave-fill-text-hover:hover .step-circle {
+  background-color: var(--color-brand-beige) !important;
+  color: var(--color-brand-brown) !important;
+}
+
+.lilita-one-regular {
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Notch Top */
+.notch-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 6rem;
+  background-color: var(--color-brand-brown);
+  border-bottom-left-radius: 2.5rem;
+  border-bottom-right-radius: 2.5rem;
+  z-index: 50;
+}
+.notch-top::before, .notch-top::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.notch-top::before {
+  left: -2.5rem;
+  background: radial-gradient(circle at 0% 100%, transparent 2.5rem, var(--color-brand-brown) 2.5rem);
+}
+.notch-top::after {
+  right: -2.5rem;
+  background: radial-gradient(circle at 100% 100%, transparent 2.5rem, var(--color-brand-brown) 2.5rem);
+}
+
+/* Notch Bottom */
+.notch-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45%;
+  height: 7rem;
+  background-color: var(--color-brand-brown);
+  border-top-left-radius: 2.5rem;
+  border-top-right-radius: 2.5rem;
+  z-index: 50;
+}
+.notch-bottom::before, .notch-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.notch-bottom::before {
+  left: -2.5rem;
+  background: radial-gradient(circle at 0% 0%, transparent 2.5rem, var(--color-brand-brown) 2.5rem);
+}
+.notch-bottom::after {
+  right: -2.5rem;
+  background: radial-gradient(circle at 100% 0%, transparent 2.5rem, var(--color-brand-brown) 2.5rem);
 }

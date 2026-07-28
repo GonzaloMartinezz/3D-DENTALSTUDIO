@@ -26,7 +26,7 @@ export default function AdminUpload() {
       const fileExtension = file.name.split('.').pop();
       const filePath = `${dni}/${Date.now()}.${fileExtension}`;
 
-      const { data: storageData, error: storageError } = await supabase.storage
+      const { error: storageError } = await supabase.storage
         .from('estudios-dentales')
         .upload(filePath, file, { cacheControl: '3600', upsert: true });
 
@@ -49,9 +49,10 @@ export default function AdminUpload() {
       alert('¡Estudio subido y registrado con éxito!');
       setFile(null);
       setDni('');
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
-      alert('Error en la carga: ' + error.message);
+      const msg = error instanceof Error ? error.message : 'Error desconocido';
+      alert('Error en la carga: ' + msg);
     } finally {
       setSubiendo(false);
     }
