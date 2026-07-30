@@ -225,12 +225,12 @@
   height: 2.5rem;
 }
 .notch-top::before {
-  left: -2.5rem;
-  background: radial-gradient(circle at 0% 100%, transparent 2.5rem, var(--color-brand-brown) 2.5rem);
+  left: -2.45rem;
+  background: radial-gradient(circle at 0% 100%, transparent 2.45rem, var(--color-brand-brown) 2.5rem);
 }
 .notch-top::after {
-  right: -2.5rem;
-  background: radial-gradient(circle at 100% 100%, transparent 2.5rem, var(--color-brand-brown) 2.5rem);
+  right: -2.45rem;
+  background: radial-gradient(circle at 100% 100%, transparent 2.45rem, var(--color-brand-brown) 2.5rem);
 }
 
 /* Notch Bottom */
@@ -254,10 +254,22 @@
   height: 2.5rem;
 }
 .notch-bottom::before {
-  left: -2.5rem;
-  background: radial-gradient(circle at 0% 0%, transparent 2.5rem, var(--color-brand-brown) 2.5rem);
+  left: -2.45rem;
+  background: radial-gradient(circle at 0% 0%, transparent 2.45rem, var(--color-brand-brown) 2.5rem);
 }
 .notch-bottom::after {
-  right: -2.5rem;
-  background: radial-gradient(circle at 100% 0%, transparent 2.5rem, var(--color-brand-brown) 2.5rem);
+  right: -2.45rem;
+  background: radial-gradient(circle at 100% 0%, transparent 2.45rem, var(--color-brand-brown) 2.5rem);
+}
+
+@media (max-width: 768px) {
+  .notch-top {
+    width: 95%;
+  }
+  .notch-bottom {
+    width: 95%;
+    height: auto;
+    min-height: 7rem;
+    padding-bottom: 1rem;
+  }
 }
