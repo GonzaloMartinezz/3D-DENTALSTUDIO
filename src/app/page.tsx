@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import PatientPortalSection from '@/components/PatientPortalSection';
 
 export default function Home() {
   return (
@@ -99,6 +100,9 @@ export default function Home() {
            </Link>
         </div>
       </div>
+
+      {/* 2. Portal de Pacientes */}
+      <PatientPortalSection />
 
       {/* 3. Marquee (Logos in Dark Background) */}
       <div className="w-full flex flex-col items-center gap-8 overflow-hidden relative pb-16">
