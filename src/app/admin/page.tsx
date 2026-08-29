@@ -1,4 +1,5 @@
 import SecureFileUploader from '@/components/SecureFileUploader';
+import AdminStudiesList from '@/components/AdminStudiesList';
 import { Search, Bell, User } from 'lucide-react';
 
 export default function AdminPage() {
@@ -77,6 +78,8 @@ export default function AdminPage() {
               </ul>
             </div>
           </div>
+          
+          <AdminStudiesList />
         </div>
       </main>
     </div>

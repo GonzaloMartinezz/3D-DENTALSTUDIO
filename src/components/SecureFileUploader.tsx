@@ -11,6 +11,9 @@ export default function SecureFileUploader() {
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  
+  const [pacienteDni, setPacienteDni] = useState('');
+  const [tipoEstudio, setTipoEstudio] = useState('Tomografía Maxilar');
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
@@ -32,7 +35,7 @@ export default function SecureFileUploader() {
   });
 
   const handleUpload = async () => {
-    if (!file) return;
+    if (!file || !pacienteDni.trim() || !tipoEstudio.trim()) return;
 
     setUploading(true);
     setStatus('idle');
@@ -58,12 +61,29 @@ export default function SecureFileUploader() {
 
       if (uploadError) throw uploadError;
 
+      // Create record in estudios table
+      const { error: dbError } = await supabase
+        .from('estudios')
+        .insert([
+          {
+            paciente_dni: pacienteDni.trim(),
+            tipo_estudio: tipoEstudio.trim(),
+            estado: 'Completado',
+            archivo_url: filePath,
+            fecha_estudio: new Date().toISOString()
+          }
+        ]);
+
+      if (dbError) throw dbError;
+
       setProgress(100);
       setStatus('success');
       
       // Limpiar archivo tras éxito
       setTimeout(() => {
         setFile(null);
+        setPacienteDni('');
+        setTipoEstudio('Tomografía Maxilar');
         setProgress(0);
         setStatus('idle');
       }, 3000);
@@ -95,6 +115,34 @@ export default function SecureFileUploader() {
       <p className="text-sm text-muted-foreground mb-6">
         Sube estudios 3D (.zip, .dcm) o documentación (.pdf). El acceso está protegido mediante firma temporal.
       </p>
+
+      {/* Patient Info Inputs */}
+      <div className="flex flex-col space-y-4 mb-6">
+        <div>
+          <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2" htmlFor="dni">DNI del Paciente</label>
+          <input 
+            id="dni"
+            type="text" 
+            value={pacienteDni}
+            onChange={(e) => setPacienteDni(e.target.value)}
+            disabled={uploading}
+            placeholder="Ej: 12345678"
+            className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+          />
+        </div>
+        <div>
+          <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2" htmlFor="tipo">Tipo de Estudio</label>
+          <input 
+            id="tipo"
+            type="text" 
+            value={tipoEstudio}
+            onChange={(e) => setTipoEstudio(e.target.value)}
+            disabled={uploading}
+            placeholder="Ej: Tomografía Maxilar, Panorámica..."
+            className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+          />
+        </div>
+      </div>
 
       {/* Zona Drag & Drop */}
       <div 
@@ -182,12 +230,12 @@ export default function SecureFileUploader() {
       {/* Botón de Acción Principal */}
       <button
         onClick={handleUpload}
-        disabled={!file || uploading || status === 'success'}
+        disabled={!file || !pacienteDni.trim() || !tipoEstudio.trim() || uploading || status === 'success'}
         className={`
           mt-6 w-full py-4 rounded-xl font-bold flex items-center justify-center space-x-2
           transition-all duration-200 min-h-[44px]
           focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background
-          ${(!file || uploading || status === 'success') 
+          ${(!file || !pacienteDni.trim() || !tipoEstudio.trim() || uploading || status === 'success') 
             ? 'bg-muted text-muted-foreground cursor-not-allowed' 
             : 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_15px_rgba(var(--primary),0.3)]'}
         `}
