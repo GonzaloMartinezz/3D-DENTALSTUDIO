@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import PatientPortalSection from '@/components/PatientPortalSection';
 
 export default function Home() {
   return (
@@ -8,10 +7,10 @@ export default function Home() {
       {/* 1. Unified Notched Hero Card */}
       <div className="bg-brand-beige mx-4 sm:mx-6 md:mx-10 mt-4 mb-12 rounded-[3rem] relative overflow-hidden flex flex-col min-h-[85vh] shadow-2xl">
         
-        {/* Background Image on Right Half */}
-        <div className="absolute right-0 top-0 bottom-0 w-full md:w-1/2 overflow-hidden pointer-events-none z-0">
-          <img src="https://images.unsplash.com/photo-1598934571731-97b4ec8b9813?q=80&w=1000" className="w-full h-full object-cover object-center opacity-80 mix-blend-multiply" alt="Paciente" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-beige via-brand-beige/50 to-transparent"></div>
+        {/* Background Image */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1600" className="w-full h-full object-cover object-center opacity-40 mix-blend-multiply" alt="" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-beige/70 via-brand-beige/40 to-brand-beige/80"></div>
         </div>
 
         {/* Top Notch (Navigation) */}
@@ -27,67 +26,34 @@ export default function Home() {
         </div>
 
         {/* Header content outside notch (Logo Left, Buttons Right) */}
-        <div className="w-full flex justify-between items-center pl-8 md:pl-16 lg:pl-20 pr-6 md:pr-8 lg:pr-10 pt-10 relative z-20">
+        <div className="w-full flex justify-between items-center pl-5 sm:pl-8 md:pl-16 lg:pl-20 pr-5 md:pr-8 lg:pr-10 pt-28 xl:pt-10 relative z-20 gap-3">
           <div className="flex items-center gap-2 text-brand-brown">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="drop-shadow-sm text-brand-brown">
                <path d="M12 21v-3" />
                <path d="M8 20c-1.5-1-3-3-4-5.5-.8-2-.9-4-.8-6C3.5 5 6 3 8.5 3c2.5 0 3.5 2.5 3.5 2.5S13 3 15.5 3 20.5 5 20.8 8.5c.1 2 0 4-.8 6-1 2.5-2.5 4.5-4 5.5" />
             </svg>
-            <span className="font-black tracking-wider text-xl">3D DENTAL STUDIO</span>
+            <span className="font-black tracking-wider text-base sm:text-xl">3D DENTAL STUDIO</span>
           </div>
           <div className="flex gap-4">
-            <Link href="/login" className="hidden lg:inline-flex px-6 py-2.5 rounded-full border border-brand-brown text-brand-brown hover:bg-brand-brown hover:text-white transition-colors font-bold text-sm items-center shadow-sm">
+            <Link href="/login" className="px-5 sm:px-6 py-2.5 rounded-full bg-brand-brown text-brand-beige font-black hover:bg-brand-dark transition-colors text-sm flex items-center shadow-lg whitespace-nowrap">
               Iniciar Sesión
-            </Link>
-            <Link href="/login" className="px-6 py-2.5 rounded-full bg-brand-brown text-brand-beige font-black hover:bg-brand-blue transition-colors text-sm flex items-center shadow-lg">
-              Registrarse
             </Link>
           </div>
         </div>
 
         {/* Hero Content Area */}
-        <div className="flex-1 w-full flex flex-col md:flex-row items-center justify-between px-8 md:px-16 lg:px-20 pb-24 pt-12 relative z-20 gap-12">
-          
-          <div className="w-full md:w-1/2 text-left flex flex-col items-start">
-            <h1 className="text-5xl lg:text-7xl font-black text-brand-brown mb-8 leading-[1.05] drop-shadow-sm">
-              Diagnóstico <br/>Dental 3D de<br/> Precisión.
-            </h1>
-            <p className="text-brand-brown/80 mb-10 max-w-md text-lg leading-relaxed font-bold">
-              Desde gestión fácil de pacientes, hasta diagnósticos inteligentes. Abre tu cuenta en un instante con nosotros.
-            </p>
-
-          </div>
-          
-          <div className="w-full md:w-1/2 relative flex justify-center md:justify-end mt-12 md:mt-0">
-             <div className="bg-white/10 backdrop-blur-2xl w-full max-w-[420px] rounded-[2.5rem] p-4 shadow-2xl relative border border-white/40">
-               <div className="bg-[#18181b] w-full rounded-[2rem] p-8 shadow-inner relative overflow-hidden border border-white/5">
-                 <div className="flex justify-between items-start mb-10">
-                   <div className="flex items-center gap-2 text-white">
-                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                     <span className="font-bold tracking-wider text-sm">3D DENTAL STUDIO</span>
-                   </div>
-                   <div className="bg-brand-brown/20 border border-brand-brown/50 px-4 py-1.5 rounded-full text-brand-beige font-bold text-xs flex items-center gap-2">
-                     <span className="w-1.5 h-1.5 rounded-full bg-brand-beige animate-pulse"></span>
-                     Estudios
-                   </div>
-                 </div>
-                 
-                 <div className="mb-2 text-white/50 text-xs font-bold uppercase tracking-widest">Balance Clínicas</div>
-                 <div className="text-4xl font-black text-white mb-6">$45,897.00</div>
-                 <div className="text-white/40 font-mono tracking-widest text-sm mb-10">**** **** **** 8767</div>
-                 
-                 <div className="flex justify-between items-end">
-                   <div className="text-white/60 text-xs font-bold uppercase tracking-wider">DAVID MARTIN<br/><span className="text-white/40 text-[10px]">18/35</span></div>
-                   <div className="bg-brand-beige text-brand-brown font-black px-3 py-1 rounded-full text-xs uppercase tracking-widest shadow-md">
-                     PRO
-                   </div>
-                 </div>
-               </div>
-             </div>
-          </div>
-
+        <div className="flex-1 w-full flex flex-col items-center justify-center text-center px-6 sm:px-10 md:px-16 pb-24 pt-10 sm:pt-12 relative z-20">
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black text-brand-brown mb-6 sm:mb-8 leading-[1.05] drop-shadow-sm">
+            Diagnóstico <br className="sm:hidden"/>Dental 3D<br/> de Precisión
+          </h1>
+          <p className="text-brand-brown/80 mb-8 sm:mb-10 max-w-xl text-base sm:text-lg leading-relaxed font-bold">
+            Tomografías y radiografías de alta calidad. Consultá y descargá tus estudios desde tu cuenta, cuando los necesites.
+          </p>
+          <Link href="/login" className="px-8 py-4 rounded-full bg-brand-brown text-brand-beige font-black hover:bg-brand-dark transition-colors shadow-xl text-sm sm:text-base">
+            Ver mis estudios
+          </Link>
         </div>
-        
+
         {/* Bottom Notch for Badges */}
         <div className="notch-bottom flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 px-4 sm:px-12 pt-2">
            <Link href="#turnos" className="flex items-center gap-2.5 bg-brand-beige/10 hover:bg-brand-beige text-brand-beige hover:text-brand-brown px-4 sm:px-5 py-1.5 sm:py-2.5 rounded-full border border-brand-beige/20 transition-all cursor-pointer shadow-sm group">
@@ -100,9 +66,6 @@ export default function Home() {
            </Link>
         </div>
       </div>
-
-      {/* 2. Portal de Pacientes */}
-      <PatientPortalSection />
 
       {/* 3. Marquee (Logos in Dark Background) */}
       <div className="w-full flex flex-col items-center gap-8 overflow-hidden relative pb-16">
@@ -301,189 +264,6 @@ export default function Home() {
                  </div>
                </div>
              </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Smart Tools Section (Cards + Phone) */}
-      <section className="w-full bg-[#f8f7f5] px-4 sm:px-12 lg:px-20 pt-12 pb-24 font-sans rounded-t-[3rem] relative z-20 -mt-16">
-        <div className="max-w-7xl mx-auto mb-32">
-          {/* Heading */}
-          <div className="text-center mb-16 flex flex-col items-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-brand-brown leading-[1.1] max-w-2xl">
-              Herramientas inteligentes para crecimiento.
-            </h2>
-          </div>
-          
-          {/* 3-Column Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-[1400px] mx-auto w-full">
-            
-            {/* Left Column (2 Cards) */}
-            <div className="lg:col-span-4 flex flex-col gap-8 justify-between h-full">
-               
-               {/* Card 1 */}
-               <div className="bg-white shadow-xl shadow-brand-brown/5 p-8 rounded-[2rem] border border-brand-brown/10 flex flex-col justify-center flex-1 min-h-[280px]">
-                 <div className="w-14 h-14 bg-brand-brown rounded-2xl flex items-center justify-center text-white mb-8 shadow-lg shadow-brand-brown/30">
-                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                 </div>
-                 <h3 className="text-3xl font-black text-brand-dark mb-4 leading-tight">Gestión <br/>Multi-Clínica</h3>
-                 <p className="text-brand-dark/60 font-bold text-sm leading-relaxed">Administra todas tus sucursales y estudios en un único panel inteligente.</p>
-               </div>
-
-               {/* Card 2 */}
-               <div className="bg-brand-beige p-8 rounded-[2rem] border border-brand-beige/50 relative overflow-hidden flex flex-col justify-start flex-1 min-h-[300px]">
-                 <h3 className="text-3xl font-black text-brand-dark mb-4 leading-tight relative z-10">Portal de <br/>Pacientes</h3>
-                 <p className="text-brand-dark/60 font-bold text-sm relative z-10 max-w-[65%]">Acceso en tiempo real a los resultados desde cualquier lugar.</p>
-                 <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400" className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full object-cover border-[10px] border-[#f8f7f5]" alt="Patient" />
-               </div>
-
-            </div>
-
-            {/* Center Column (Mobile App Showcase) */}
-            <div className="lg:col-span-4 flex justify-center items-center py-10 lg:py-0 w-full h-[720px] relative">
-               
-               {/* Main Phone Mockup */}
-               <div className="relative w-[320px] h-[650px] bg-[#E8E6DD] rounded-[3.5rem] p-[14px] shadow-2xl shadow-brand-brown/30 border-[6px] border-white transform transition-transform duration-500 hover:-translate-y-6 z-20">
-                 <div className="w-full h-full bg-[#F4F1EA] rounded-[2.8rem] relative overflow-hidden border border-black/5 flex flex-col items-center pt-24">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-[#1c1c1c] rounded-b-3xl"></div>
-                    
-                    <div className="w-24 h-24 bg-[#2C6B6B] rounded-full flex items-center justify-center shadow-xl shadow-[#2C6B6B]/40 mb-8">
-                       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-                    </div>
-                    
-                    <h3 className="text-3xl font-black text-[#385B7A] mb-3 uppercase tracking-wider">KIT VALIDADO</h3>
-                    <p className="text-center text-[#7C90A0] text-[15px] px-8 mb-12 font-bold leading-relaxed">Autenticidad comprobada por GM Kit Studio.</p>
-                    
-                    <div className="bg-white w-[85%] rounded-[1.5rem] p-7 shadow-lg flex flex-col gap-5">
-                      <div className="flex justify-between items-center border-b border-gray-100 pb-3">
-                        <span className="text-gray-400 font-bold text-sm">Feedback</span>
-                        <span className="text-[#2C4059] font-black text-sm">¡Calidad 10/10!</span>
-                      </div>
-                      <div className="flex justify-between items-center border-b border-gray-100 pb-3">
-                        <span className="text-gray-400 font-bold text-sm">Doctor/a</span>
-                        <span className="text-[#2C4059] font-black text-sm">Dr. Wagner</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-400 font-bold text-sm">Valoración</span>
-                        <div className="flex text-[#6C7D8F] text-sm">★★★★★</div>
-                      </div>
-                    </div>
-                    
-                    <div className="absolute -bottom-8 w-[65%] h-24 bg-[#4A6782] rounded-t-full"></div>
-                 </div>
-               </div>
-
-            </div>
-
-            {/* Right Column (2 Cards) */}
-            <div className="lg:col-span-4 flex flex-col gap-8 justify-between h-full">
-               
-               {/* Card 3 */}
-               <div className="bg-white shadow-xl shadow-brand-brown/5 p-8 rounded-[2rem] border border-brand-brown/10 relative overflow-hidden flex flex-col justify-start flex-1 min-h-[300px]">
-                 <h3 className="text-3xl font-black text-brand-dark mb-4 leading-tight relative z-10">Reportes <br/>Inteligentes</h3>
-                 <p className="text-brand-dark/60 font-bold text-sm relative z-10 max-w-[65%]">Métricas precisas y envíos automatizados a especialistas.</p>
-                 <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=400" className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full object-cover border-[10px] border-[#f8f7f5]" alt="Doctor" />
-               </div>
-
-               {/* Card 4 (Brown Button Card) */}
-               <div className="bg-brand-brown shadow-2xl shadow-brand-brown/20 p-8 rounded-[2rem] relative overflow-hidden flex flex-col justify-between flex-1 min-h-[300px]">
-                 <div className="relative z-10">
-                   <h3 className="text-3xl font-black text-brand-beige mb-4 leading-tight">Impulsa tu <br/>Cuenta ahora</h3>
-                   <p className="text-brand-beige/70 font-bold text-sm max-w-[80%] leading-relaxed">Descarga la app y experimenta el control total de tus finanzas.</p>
-                 </div>
-                 <div className="mt-8 relative z-10">
-                   <button className="bg-brand-beige text-brand-brown font-black px-6 py-3.5 rounded-xl hover:bg-white transition-colors w-max shadow-lg">
-                     Descargar App
-                   </button>
-                 </div>
-                 <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400" className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full object-cover border-[10px] border-[#8a6b4e] opacity-90" alt="Staff" />
-               </div>
-
-            </div>
-          </div>
-        </div>
-
-        {/* 5. Bento Grid Features */}
-        <div className="max-w-6xl mx-auto flex flex-col gap-24 mt-20">
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <div className="lg:col-span-7 relative h-[550px] rounded-[2.5rem] overflow-hidden shadow-md bg-brand-brown/5">
-              <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1000" alt="Profesional" className="w-full h-full object-cover" />
-              <div className="absolute bottom-4 right-4 sm:bottom-12 sm:right-12 bg-white p-4 sm:p-6 rounded-3xl shadow-2xl flex flex-col gap-3 sm:gap-4 w-64 sm:w-72">
-                <div className="flex justify-between items-center text-sm text-gray-500 font-medium">
-                  <span>Balance</span>
-                  <span className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md">Oct - Feb ▼</span>
-                </div>
-                <div className="text-3xl font-bold text-brand-brown">
-                  <span className="text-lg mr-1">$</span>15,560.00
-                </div>
-                <div className="h-20 w-full mt-2 relative">
-                  <svg viewBox="0 0 100 40" className="w-full h-full stroke-brand-brown fill-none" strokeWidth="1.5">
-                    <path d="M0,35 Q10,25 20,30 T40,20 T60,25 T80,10 T100,15" />
-                    <circle cx="60" cy="25" r="3" className="fill-brand-brown stroke-white stroke-2" />
-                  </svg>
-                  <div className="absolute top-1 left-1/2 -translate-x-1/2 bg-brand-brown text-white text-xs px-3 py-1.5 rounded-full font-bold shadow-lg">1500</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 flex flex-col gap-6">
-              <div className="bg-brand-brown rounded-[2.5rem] p-10 text-white relative shadow-md flex-1 flex flex-col justify-center">
-                <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                </div>
-                <div className="w-14 h-14 rounded-full border-2 border-brand-blue/30 flex items-center justify-center mb-8 bg-brand-blue/10">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9DCE8" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="10" r="3"/></svg>
-                </div>
-                <h3 className="text-[3.5rem] leading-none font-bold text-brand-blue mb-4">50K</h3>
-                <p className="text-brand-beige/80 font-medium text-lg max-w-[200px]">Contributions in<br/>the last year</p>
-              </div>
-
-              <div className="flex-1 flex flex-col items-center justify-center py-8 text-brand-dark bg-gray-50 rounded-[2.5rem] shadow-sm">
-                <h3 className="text-5xl font-bold mb-3">70,000+</h3>
-                <p className="text-xl opacity-70 font-medium">Clients</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center text-center mt-12 mb-4">
-            <span className="text-brand-dark/50 uppercase tracking-widest font-bold mb-4 text-sm">GROW FINANCIALLY</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark max-w-2xl leading-tight">
-              Unlock smart tools designed for financial growth.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-brand-blue/10 rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden h-[340px] shadow-sm border border-brand-blue/20">
-              <h3 className="text-3xl font-bold text-brand-dark mb-4 max-w-[200px] leading-tight">Subscribe to<br/>our Newsletter</h3>
-              <p className="text-brand-dark/60 text-sm mb-6 flex-1 max-w-[220px] font-medium leading-relaxed">
-                Get insights, offers, and money-saving advice straight to your inbox.
-              </p>
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400" className="absolute -bottom-16 -right-10 w-52 h-52 rounded-full object-cover border-[6px] border-white" alt="Newsletter" />
-            </div>
-
-            <div className="bg-gray-50 rounded-[2.5rem] p-8 flex flex-col relative h-[340px] shadow-sm border border-gray-100">
-              <div className="w-12 h-12 bg-brand-brown rounded-xl flex items-center justify-center text-white mb-8 shadow-md">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              </div>
-              <h3 className="text-3xl font-bold text-brand-dark mb-4 leading-tight">Multi-Account<br/>Management</h3>
-              <p className="text-brand-dark/60 text-sm font-medium leading-relaxed">
-                Seamlessly control all your finances and accounts in one unified dashboard.
-              </p>
-            </div>
-
-            <div className="bg-brand-brown rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden h-[340px] text-white shadow-md">
-              <h3 className="text-3xl font-bold text-white mb-4 max-w-[200px] leading-tight">Boost your<br/>Account now</h3>
-              <p className="text-white/70 text-xs mb-6 flex-1 max-w-[220px] font-medium leading-relaxed">
-                Download the app now and experience full control of your finances.
-              </p>
-              <div className="mt-auto relative z-10">
-                <button className="bg-brand-blue text-brand-brown px-5 py-2.5 rounded-xl text-sm font-bold w-max shadow-md hover:bg-white transition-colors">
-                  Download App
-                </button>
-              </div>
-              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400" className="absolute -bottom-8 -right-8 w-44 h-44 rounded-full object-cover border-[6px] border-brand-brown opacity-90" alt="Boost Account" />
-            </div>
           </div>
         </div>
       </section>

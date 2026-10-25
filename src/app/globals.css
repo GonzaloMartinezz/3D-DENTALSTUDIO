@@ -210,7 +210,8 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 50%;
+  width: 40%;
+  min-width: 28rem;
   height: 6rem;
   background-color: var(--color-brand-brown);
   border-bottom-left-radius: 2.5rem;
@@ -265,6 +266,7 @@
 @media (max-width: 768px) {
   .notch-top {
     width: 95%;
+    min-width: 0;
   }
   .notch-bottom {
     width: 95%;

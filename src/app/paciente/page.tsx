@@ -1,37 +1,25 @@
-'use client';
+import { redirect } from 'next/navigation';
+import { requerirSesion } from '@/lib/auth';
+import PatientStudies from '@/components/PatientStudies';
+import { getConfig } from '@/lib/config';
+import type { Estudio } from '@/types';
 
-import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
-import PatientDashboard from '@/components/PatientDashboard';
-import { Loader2 } from 'lucide-react';
+export default async function PacientePage() {
+  const { supabase, perfil } = await requerirSesion();
+  if (perfil.rol === 'admin') redirect('/admin');
 
-function DashboardContent() {
-  const searchParams = useSearchParams();
-  const dni = searchParams.get('dni');
+  const config = await getConfig(supabase);
 
-  if (!dni) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh]">
-        <p className="text-gray-500">No se proporcionó un DNI válido.</p>
-      </div>
-    );
-  }
+  // RLS garantiza que solo se devuelven los estudios de este paciente
+  const { data: estudios } = await supabase
+    .from('estudios')
+    .select('*, archivos:estudio_archivos(*)')
+    .order('fecha_estudio', { ascending: false })
+    .returns<Estudio[]>();
 
   return (
-    <div className="py-8 px-4">
-      <PatientDashboard UserDni={dni} />
+    <div className="min-h-screen bg-[#f8f7f5] pt-20 md:pt-10 pb-12 px-4 sm:px-6">
+      <PatientStudies perfil={perfil} estudios={estudios ?? []} mensaje={config.mensaje_portal} telefono={config.telefono_contacto} clinica={config.nombre_clinica} />
     </div>
-  );
-}
-
-export default function PacientePage() {
-  return (
-    <Suspense fallback={
-      <div className="flex justify-center items-center h-[50vh]">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
-      </div>
-    }>
-      <DashboardContent />
-    </Suspense>
   );
 }

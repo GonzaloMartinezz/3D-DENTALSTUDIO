@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 
 export default function ChatbotWidget() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     { role: 'bot', text: '¡Hola! Soy el asistente virtual de 3D Dental Studio. ¿En qué te puedo ayudar hoy?' }
@@ -29,6 +31,9 @@ export default function ChatbotWidget() {
       ]);
     }, 1000);
   };
+
+  // Es un asistente para visitantes: no corresponde dentro del panel ni del portal con sesión
+  if (pathname.startsWith('/admin') || pathname.startsWith('/paciente') || pathname === '/mfa' || pathname === '/login') return null;
 
   return (
     <div className="fixed bottom-6 right-6 z-50">

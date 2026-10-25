@@ -29,7 +29,6 @@ export const viewport = {
   themeColor: "#111827",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -44,7 +43,6 @@ export default function RootLayout({
       >
         <Sidebar />
         <main className="flex-1 flex flex-col overflow-x-hidden min-h-screen w-full relative">
-          <div className="md:hidden h-16 w-full"></div> {/* Spacer for mobile toggle button */}
           {children}
         </main>
         <ChatbotWidget />
